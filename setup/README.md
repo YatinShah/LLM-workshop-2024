@@ -66,3 +66,23 @@ To install these requirements most conveniently, you can use the `requirements.t
 ```bash
 pip install -r requirements.txt
 ```
+
+## 4. Docker environment
+
+The docker environment is copied primaryly from LLMs-from-scratch repository for Sebastian Raschka.
+
+We build a devcontainer to do development under.
+
+Run following commands to build the image and then run the container and Jupyter env within it.
+Then start a browser and connect to Jupyter book to do dev work.
+
+```shell
+$> cd .devcontainer
+$> docker build -f ./Dockerfile -t llmscratch.local .
+# run the container on the HOST network, so its easy to open browsers and connect.
+$> docker run -v "../02_data:/workspace" -h llm --name llm --rm --network host -it llmscratch.local bash
+# run dev container plugin in vsCode and connect to the `llm` instance through remote connection
+# now open a command prompt and type 
+$> uv run jupyter lab --allow-root
+# copy the jupyter notebook command and run it in browser with the secret key.,
+```
